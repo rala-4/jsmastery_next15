@@ -43,7 +43,12 @@ function SocialAuthForm() {
         />
         <span>Login with GitHub</span>
       </Button>
-      <Button className={buttonClass}>
+      <Button
+        className={buttonClass}
+        onClick={() => {
+          handleSignIn("google");
+        }}
+      >
         <Image
           src="/icons/google.svg"
           alt="Google icon"
