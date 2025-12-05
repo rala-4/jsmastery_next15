@@ -28,6 +28,7 @@ export const removeKeysFromQuery = ({
   keysToRemove.forEach((key) => {
     delete queryString[key];
   });
+  //console.log(queryString, "queryString");
   //!Stringify an object into a query string and sorting the keys.
   return qs.stringifyUrl(
     {

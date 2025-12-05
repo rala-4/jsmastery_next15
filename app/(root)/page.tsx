@@ -1,3 +1,4 @@
+import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
@@ -38,10 +39,16 @@ interface SeachParams {
 }
 //! in Server Component we can access search paras as props
 export default async function Home({ searchParams }: SeachParams) {
-  const { query = "" } = await searchParams;
-  const filterdQuestions = questions.filter((question) =>
-    question.title.toLowerCase().includes(query)
-  );
+  const { query = "", filter = "" } = await searchParams;
+  const filterdQuestions = questions.filter((question) => {
+    const matchQuery = question.title
+      .toLowerCase()
+      .includes(query.toLowerCase());
+    const matchFilter = question.title
+      .toLowerCase()
+      .includes(filter.toLowerCase());
+    return matchQuery && matchFilter;
+  });
   return (
     <>
       <section className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -63,10 +70,10 @@ export default async function Home({ searchParams }: SeachParams) {
           otherClasses="flex-1"
         />
       </section>
-      HomeFilter
+      <HomeFilter />
       <div className="mt-11 flex flex-col gap-6 w-full">
         {filterdQuestions.map((question) => (
-          <p>{question.title}</p>
+          <p key={question._id}>{question.title}</p>
         ))}
       </div>
     </>
