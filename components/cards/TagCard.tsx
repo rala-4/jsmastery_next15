@@ -3,11 +3,10 @@ import React from "react";
 import { Badge } from "../ui/badge";
 import Link from "next/link";
 import { getDeviconClassName } from "@/lib/utils";
-import { id } from "zod/v4/locales";
 interface Props {
   _id: string;
   name: string;
-  questions: number;
+  questions?: number;
   showCount?: boolean;
   compact?: boolean;
 }
