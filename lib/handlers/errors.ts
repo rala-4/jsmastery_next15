@@ -45,6 +45,7 @@ const handleError = (error: unknown, responseType: ResponseType = "server") => {
   }
   if (error instanceof ZodError) {
     const validationError = new ValidationError(
+      //flatern to get only one array if we have array of array
       error.flatten().fieldErrors as Record<string, string[]>
     );
     return formatResponse(
