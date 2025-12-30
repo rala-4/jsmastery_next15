@@ -35,6 +35,7 @@ export const formatResponse = (
     : { status, ...responseContent };
 };
 const handleError = (error: unknown, responseType: ResponseType = "server") => {
+  console.log(error, "error>>");
   if (error instanceof RequestError) {
     return formatResponse(
       responseType,
